@@ -125,7 +125,7 @@ const Navbar = () => {
             <button
               data-collapse-toggle="navbar-cta"
               type="button"
-              className="inline-flex items-center p-2 w-8 h-6 md:w-10 md:h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden  focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400"
+              className="inline-flex items-center p-2 w-8 h-6 md:w-10 md:h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden  dark:text-gray-400"
               aria-controls="navbar-cta"
               aria-expanded="false"
             >
