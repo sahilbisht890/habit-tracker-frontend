@@ -6,7 +6,7 @@ import {
   IconCircleDotFilled,
   IconTrashFilled
 } from "@tabler/icons-react";
-import { Spin, Tooltip } from "antd";
+import { Spin, Tooltip , DatePicker  } from "antd";
 import HabitModal from "./habitCreateOrEditModal";
 import axiosInstance from "../../utils/axios";
 import dayjs from "dayjs";
@@ -15,11 +15,12 @@ import { AppContext } from "../../createContext";
 
 const Dashboard = () => {
 
-  const {habits, setHabits, todayHabits, setTodayHabits} = useContext(AppContext);
+  const {habits, setHabits, todayHabits, setTodayHabits , selectedDate, setSelectedDate} = useContext(AppContext);
   const [loading, setLoading] = useState(false);
   const [actionType, setActionType] = useState("");
   const [visible, setIsVisible] = useState(false);
   const [habitDetails, setHabitDetails] = useState({});
+  const today = dayjs().format("DD-MM-YYYY");
 
   const apiCalled = useRef(false);
   const [isChartDataFetched , setIsChartDataFetched] = useState(false);
@@ -30,10 +31,11 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (!apiCalled.current && !habits) {
+      const formattedDate = dayjs(new Date()).format("DD-MM-YYYY");
       apiCalled.current = true;
       setLoading(true);
       fetchHabitList();
-      fetchHabitTrackerList();
+      fetchHabitTrackerList(formattedDate);
     }
   }, []);
 
@@ -75,11 +77,17 @@ const Dashboard = () => {
     }
   };
 
+  const handleDateChange = async (date) => {
+      const formattedDate = dayjs(date).format("DD-MM-YYYY");
+      setSelectedDate(formattedDate); 
+      await fetchHabitTrackerList(formattedDate);
+  };
+
   const fetchHabitTrackerList = async (date) => {
     setLoading(true);
     try {
-      const formattedDate = dayjs(new Date()).format("DD-MM-YYYY");
-      const data = { date: formattedDate };
+      console.log('datecoming',date);
+      const data = { date: date };
       const response = await axiosInstance.post("habitTrackerList", data);
       if (response.data?.success) {
         const habitList = response.data?.data;
@@ -100,7 +108,9 @@ const Dashboard = () => {
       const response = await axiosInstance.post("addNewHabitToTrack", data);
       if(response.data?.success){
         console.log('Habit Added Successfully in tracker List');
-        await fetchHabitTrackerList();
+        if(selectedDate === today){
+          await fetchHabitTrackerList();
+        }
       }
     } catch (error) {
        console.log("Error while adding habit in Today's List" , error);
@@ -145,6 +155,12 @@ const Dashboard = () => {
     }
   }
 
+  const handleUpdateHabit = async (habit) => {
+       setHabitDetails(habit);
+       setActionType('update');
+       setIsVisible(true);
+  }
+
   return (
     <div className="flex flex-col md:flex-row h-screen p-4 bg-pink-50 dark:bg-gray-900 dark:text-gray-200">
       <HabitModal
@@ -161,14 +177,14 @@ const Dashboard = () => {
         </div>
       ) : (
         <>
-          <div className="md:w-1/3 w-full p-4 bg-pink-300 dark:bg-gray-800 rounded-lg shadow-lg overflow-y-auto">
+          <div className="md:w-1/3 w-full p-4 h-[90rem] md:h-full  bg-pink-300 dark:bg-gray-800 rounded-lg shadow-lg overflow-y-auto">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-lg font-bold">Your Habits</h2>
+              <h2 className="text-base md:text-lg font-bold">Your Habits</h2>
               <button
                 className="flex items-center bg-pink-700 text-white px-3 py-1 rounded-md hover:scale-x-105 dark:bg-white dark:text-gray-800"
                 onClick={handleCreateHabit}
               >
-                <IconPlus className="w-5 h-5 mr-1" />
+                <IconPlus className="w-3 text-sm md:text-base h-3 md:w-5 md:h-5 mr-1" />
                 New Habit
               </button>
             </div>
@@ -179,22 +195,30 @@ const Dashboard = () => {
                     key={habit.id}
                     className="p-3 bg-white dark:bg-gray-700 rounded-lg shadowbox flex justify-between items-center"
                   >
-                    <span className="font-medium">{habit.name}</span>
+                    <span className="font-medium  text-sm md:text-base">{habit.name}</span>
                     <div className='flex justify-between items-center gap-2'>
                     <button
                       className="text-pink-700 dark:text-white hover:scale-105"
                       onClick={() => handleAddHabitForToday(habit)}
                     >
                       <Tooltip title="Add Habit For Today">
-                        <IconPlus className="w-5 h-5" />
+                        <IconPlus className="h-3 w-3 md:w-5 md:h-5" />
                       </Tooltip>
-                    </button>                    
+                    </button>   
+                    <button
+                        className="text-pink-700 dark:text-white hover:scale-105"
+                        onClick={() => handleUpdateHabit(habit)}
+                      >
+                        <Tooltip title="Update the Habit">
+                          <IconEdit className="w-3 h-3 md:w-5 md:h-5" />
+                        </Tooltip>
+                      </button>                 
                     <button
                       className="text-red-700 dark:text-red-400 hover:scale-105"
                       onClick={() => HandleHabitDelete(habit)}
                     >
                       <Tooltip title="Delete Habit">
-                        <IconTrashFilled className="w-5 h-5" />
+                        <IconTrashFilled className="h-3 w-3 md:w-5 md:h-5" />
                       </Tooltip>
                     </button>
                     </div>
@@ -211,7 +235,20 @@ const Dashboard = () => {
           </div>
 
           <div className="md:w-2/3 w-full mt-6 md:mt-0 md:ml-6 p-4 bg-pink-300 dark:bg-gray-800 rounded-lg shadow-lg overflow-y-auto">
-            <h2 className="text-lg font-bold mb-4">Today's Habits</h2>
+          <div className='flex justify-between items-center'>
+          <h2 className="text-lg font-bold mb-4">{selectedDate === today ? "Today's Habits" :`Selected Date : ${dayjs(selectedDate).format("DD MMM, YYYY")}`}</h2>
+          <div>
+          <DatePicker 
+                 onChange={handleDateChange}             
+                 format="DD-MM-YYYY" 
+                 placeholder="chose date"
+                 allowClear={false}
+                 value={dayjs(selectedDate, "DD-MM-YYYY")}
+                 disabledDate={(current) => current.isAfter(dayjs(), "day")} 
+
+                 />
+          </div>
+           </div>
             <div className="flex justify-center">
             {
               todayHabits && todayHabits.length > 0 && isChartDataFetched && <HabitCompletionChart 
@@ -234,14 +271,14 @@ const Dashboard = () => {
                     className="p-4 bg-white dark:bg-gray-700 rounded-lg shadowbox"
                   >
                     <div className="flex justify-between items-center">
-                      <h3 className="font-semibold text-lg">{habit.name}</h3>
+                      <h3 className="font-semibold text-base md:text-lg">{habit.name}</h3>
                       <div className="flex items-center gap-3">
                       <button
                         className="text-pink-700 dark:text-white hover:scale-105"
                         onClick={() => handleEditAction(habit)}
                       >
                         <Tooltip title="Update the Progress">
-                          <IconEdit className="w-5 h-5" />
+                          <IconEdit className="w-3 h-3 md:w-5 md:h-5" />
                         </Tooltip>
                       </button>
                       <button
@@ -249,13 +286,13 @@ const Dashboard = () => {
                         onClick={() => HandleHabitTrackerDelete(habit)}
                       >
                         <Tooltip title="Delete the Tracking Habit">
-                          <IconTrashFilled className="w-5 h-5" />
+                          <IconTrashFilled className="w-3 h-3 md:w-5 md:h-5" />
                         </Tooltip>
                       </button>
                       </div>
 
                     </div>
-                    <div className="mt-2 text-md font-semibold text-pink-700 dark:text-white">
+                    <div className="mt-2 text-base md:text-md font-semibold text-pink-700 dark:text-white">
                       <p>
                         Progress: {habit.progress} / {habit.dailyGoal}{" "}
                         {habit.unit}
@@ -267,13 +304,13 @@ const Dashboard = () => {
                             : "text-yellow-700 dark:text-yellow-500"
                         }`}
                       >
-                        <span className="text-md font-semibold">
+                        <span className="text-base md:text-md font-semibold">
                           Status {"   "} : {"   "}
                         </span>
                         {habit.status === "complete" ? (
-                          <IconCircleCheckFilled className="w-6 h-6" />
+                          <IconCircleCheckFilled className="w-4 h-4 md:w-6 md:h-6" />
                         ) : (
-                          <IconCircleDotFilled className="w-6 h-6" />
+                          <IconCircleDotFilled className="w-4 h-4 md:w-6 md:h-6" />
                         )}
                       </div>
                     </div>

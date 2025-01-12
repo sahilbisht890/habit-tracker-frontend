@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef} from "react";
 import { NavLink } from "react-router-dom";
 import { IconMoonFilled, IconBulbFilled } from "@tabler/icons-react";
 import { AppContext } from "../../createContext";
@@ -7,12 +7,28 @@ const Navbar = () => {
   const { state, setState, setSignupView } = useContext(AppContext);
   const [showProfile, setShowProfile] = useState(false);
 
+  const dropdownRef = useRef(null); 
+
   const toggleTheme = () => {
     setState((prevState) => ({
       ...prevState,
       theme: prevState.theme === "light" ? "dark" : "light",
     }));
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowProfile(false); 
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
 
   const handleLogout =async  () => {
     try {
@@ -47,7 +63,7 @@ const Navbar = () => {
               Tracko
             </span>
           </div>
-          <div className="flex md:order-2 items-center gap-4 space-x-3 md:space-x-0 rtl:space-x-reverse">
+          <div className="flex md:order-2 items-center gap-2 md:gap-4 space-x-3 md:space-x-0 rtl:space-x-reverse">
             <div className="cursor-pointer" onClick={toggleTheme}>
               {state.theme === "light" ? (
                 <IconMoonFilled />
@@ -65,7 +81,7 @@ const Navbar = () => {
                 >
                   <span className="sr-only">Open user menu</span>
                   <img
-                    className="w-8 h-8 rounded-full"
+                    className="w-5 h-5 md:w-8 md:h-8 rounded-full"
                     src="/images/icons8.png"
                     alt="user photo"
                   />
@@ -74,6 +90,7 @@ const Navbar = () => {
                   <div
                     className="z-50 profileDropdown my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
                     id="user-dropdown"
+                    ref={dropdownRef}
                   >
                     <div className="px-4 py-3">
                       <span className="block text-sm text-gray-900 dark:text-white">
@@ -108,13 +125,13 @@ const Navbar = () => {
             <button
               data-collapse-toggle="navbar-cta"
               type="button"
-              className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+              className="inline-flex items-center p-2 w-8 h-6 md:w-10 md:h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
               aria-controls="navbar-cta"
               aria-expanded="false"
             >
               <span className="sr-only">Open main menu</span>
               <svg
-                className="w-5 h-5"
+                className="w-3 h-3 md:w-5 md:h-5"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -140,7 +157,7 @@ const Navbar = () => {
                   to="/"
                   className={({ isActive }) =>
                     isActive
-                      ? "block py-2 px-3 md:p-0 text-pink-700 bg-pink-700 rounded md:bg-transparent md:dark:text-pink-400"
+                      ? "block py-2 px-3 md:p-0 text-pink-700 bg-pink-700 rounded bg-transparent md:dark:text-pink-400"
                       : "block py-2 px-3 md:p-0 text-gray-800 rounded hover:bg-gray-100 md:hover:bg-transparent  dark:text-white dark:hover:bg-gray-700 dark:hover:text-white"
                   }
                 >
@@ -153,7 +170,7 @@ const Navbar = () => {
                   to="/about"
                   className={({ isActive }) =>
                     isActive
-                      ? "block py-2 px-3 md:p-0 text-pink-700 bg-pink-700 rounded md:bg-transparent md:dark:text-pink-400"
+                      ? "block py-2 px-3 md:p-0 text-pink-700 bg-pink-700 rounded bg-transparent md:dark:text-pink-400"
                       : "block py-2 px-3 md:p-0 text-gray-800 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-pink-700 md:dark:hover:text-pink-400 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                   }
                 >
@@ -166,7 +183,7 @@ const Navbar = () => {
                   to="/dashboard"
                   className={({ isActive }) =>
                     isActive
-                      ? "block py-2 px-3 md:p-0 text-pink-700 bg-pink-700 rounded md:bg-transparent md:dark:text-pink-400"
+                      ? "block py-2 px-3 md:p-0 text-pink-700 bg-pink-700 rounded bg-transparent md:dark:text-pink-400"
                       : "block py-2 px-3 md:p-0 text-gray-800 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-pink-700 md:dark:hover:text-pink-400 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
                   }
                 >

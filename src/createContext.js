@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";
-
+import dayjs from 'dayjs'
 export const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
@@ -13,9 +13,11 @@ export const AppProvider = ({ children }) => {
   const [signupView , setSignupView] = useState(false);
   const [habits, setHabits] = useState(null);
   const [todayHabits, setTodayHabits] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(dayjs().format("DD-MM-YYYY"));
+
 
   return (
-    <AppContext.Provider value={{ state, setState, loginView , setLoginView , signupView , setSignupView , habits, setHabits, todayHabits, setTodayHabits}}>
+    <AppContext.Provider value={{ state, setState, loginView , setLoginView , signupView , setSignupView , habits, setHabits, todayHabits, setTodayHabits , selectedDate, setSelectedDate}}>
       {children}
     </AppContext.Provider>
   );

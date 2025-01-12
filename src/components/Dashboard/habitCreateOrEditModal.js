@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext} from "react";
 import { Modal, Form, Input, Button, InputNumber } from "antd";
 import axiosInstance from "../../utils/axios";
+import { AppContext } from "../../createContext";
+import dayjs from 'dayjs';
 
 const HabitModal = ({
   type,
@@ -12,6 +14,8 @@ const HabitModal = ({
 }) => {
   const [form] = Form.useForm();
   const [isSubmitting, setIsSubmitting] = useState(false);
+    const {selectedDate} = useContext(AppContext);
+  
 
   useEffect(() => {
     if (type === "edit" && habitDetails) {
@@ -21,7 +25,14 @@ const HabitModal = ({
         unit: habitDetails.unit,
         progress: habitDetails.progress,
       });
-    } else {
+    }else if(type === 'update' && habitDetails){
+      form.setFieldsValue({
+        name: habitDetails.name,
+        dailyGoal: habitDetails.dailyGoal,
+        unit: habitDetails.unit,
+      });
+    } 
+    else {
       form.resetFields();
     }
   }, [type, habitDetails, form]);
@@ -39,10 +50,35 @@ const HabitModal = ({
     setIsSubmitting(true);
     if (type === "edit") {
       handleUpdate(values);
-    } else {
+    }else if(type === 'update')
+      {
+      handleHabitUpdate(values);
+      } else {
       handleCreate(values);
     }
   };
+
+
+  const handleHabitUpdate = async (values) => {
+    try {
+      const data = {
+        id : habitDetails.id ,
+        name : values.name ,
+        dailyGoal : values.dailyGoal,
+        unit : values.unit
+      }
+      const response = await axiosInstance.post("updateHabit", values);
+      if (response.data?.success) {
+        setIsVisible(false);
+        await fetchHabitList();
+      }
+    } catch (error) {
+      console.log("Error", error);
+    } finally {
+      setIsSubmitting(false);
+      form.resetFields();
+    }
+  }
 
   const handleUpdate = async (values) => {
     try {
@@ -54,7 +90,8 @@ const HabitModal = ({
       const response = await axiosInstance.patch("updateHabitProgress", data);
       if (response.data?.success) {
        setIsVisible(false);
-       await fetchHabitTrackerList();
+      const today = dayjs().format("DD-MM-YYYY");
+      await fetchHabitTrackerList(today);
       }
     } catch (error) {
       console.log("Error", error);
@@ -179,7 +216,7 @@ const HabitModal = ({
             htmlType="submit"
             className="rounded-md text-white  bg-pink-700 hover:scale-105 w-1/2 font-semibold"
           >
-            {type === "edit" ? "Update Habit" : "Create Habit"}
+            {type === "edit" || type === "update" ? "Update Habit" : "Create Habit"}
           </Button>
         </Form.Item>
       </Form>
