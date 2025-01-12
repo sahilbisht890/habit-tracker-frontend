@@ -242,7 +242,7 @@ const Dashboard = () => {
             </ul>
           </div>
 
-          <div className="md:w-2/3 w-full mt-6 md:mt-0 md:ml-6 p-4 bg-pink-300 dark:bg-gray-800 rounded-lg shadow-lg overflow-y-auto">
+          <div className="md:w-2/3 w-full mt-6 md:mt-0 h-[90rem] md:h-full md:ml-6 p-4 bg-pink-300 dark:bg-gray-800 rounded-lg shadow-lg overflow-y-auto">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <h2 className="text-base md:text-lg font-semibold mb-4 text-center md:mb-0 md:mr-4">
                 {selectedDate === today
