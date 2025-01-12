@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    box-sizing: border-box !important;
+}
+
+.pacifico-regular {
+    font-family: "Pacifico", serif;
+    font-style: normal;
+  }
+
+::-webkit-scrollbar {
+    display: none;
+  }
+  
+  * {
+    scrollbar-width: none;
+    scrollbar-color: transparent transparent;
+  }
+  
+  body {
+    -ms-overflow-style: none;
+  }
+  
+  .ant-btn-variant-outlined:hover {
+     border-width: 2px;
+     border-color: rgb(190 24 93) !important;
+     color : rgb(190 24 93) !important ;
+     background-color: white !important;
+  }
+  .ant-btn.ant-btn-block {
+    width:50%
+  }
+
+  .ant-btn {
+    height: 38px;
+  }
+
+   .ant-modal .ant-modal-title {
+    font-size: 1.6rem;
+    text-align: center;
+    color : rgb(190 24 93) !important ;
+  }
+
+  label {
+    color : rgb(121, 16, 59) !important ;
+  }
+
+  .profileDropdown {
+    position: fixed;
+    top:30px;
+    right: 20px;
+  }
+
+  .light .shadowbox {
+    box-shadow: 0 .1rem .4rem rgba(0, 0, 0, .556) !important;
+  }
+
+  .dark .shadowbox {
+    box-shadow: 0 .1rem .4rem rgba(243, 242, 243, 0.54) !important;
+  }
+
+  .habitModal input {
+    height: 40px !important;
+  }
+  canvas {
+      height : 100% !important ;
+      width : 100% !important;
+  }
