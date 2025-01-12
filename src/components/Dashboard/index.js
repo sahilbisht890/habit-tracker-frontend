@@ -247,9 +247,7 @@ const Dashboard = () => {
               <h2 className="text-base md:text-lg font-semibold mb-4 text-center md:mb-0 md:mr-4">
                 {selectedDate === today
                   ? "Today's Habits"
-                  : `Selected Date: ${dayjs(selectedDate).format(
-                      "DD MMM, YYYY"
-                    )}`}
+                  : `Selected Date: ${selectedDate}`}
               </h2>
               <div className="text-center">
                 <DatePicker
