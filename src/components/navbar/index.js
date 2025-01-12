@@ -56,14 +56,14 @@ const Navbar = () => {
           <div className="flex items-center space-x-3 rtl:space-x-reverse">
             <img
               src="/images/logo.webp"
-              className="h-16"
+              className="h-12 md:h-16"
               alt="habiit tracker Logo"
             />
-            <span className="self-center text-3xl  whitespace-nowrap text-gray-800 dark:text-white pacifico-regular">
+            <span className="self-center text-2xl md:text-3xl  whitespace-nowrap text-gray-800 dark:text-white pacifico-regular">
               Tracko
             </span>
           </div>
-          <div className="flex md:order-2 items-center gap-2 md:gap-4 space-x-3 md:space-x-0 rtl:space-x-reverse">
+          <div className="flex md:order-2 items-center gap-1 md:gap-4 space-x-3 md:space-x-0 rtl:space-x-reverse">
             <div className="cursor-pointer" onClick={toggleTheme}>
               {state.theme === "light" ? (
                 <IconMoonFilled />
@@ -117,7 +117,7 @@ const Navbar = () => {
               <button
                 onClick={() => setSignupView(true)}
                 type="button"
-                className="text-white bg-pink-700 hover:scale-110 focus:ring-4 focus:outline-none focus:ring-pink-300  rounded-lg text-sm px-4 py-2 text-center dark:bg-white dark:text-pink-800 dark:focus:ring-pink-100"
+                className="text-white bg-pink-700 hover:scale-110 focus:ring-4 focus:outline-none focus:ring-pink-300  rounded-lg text-sm px-1 md:px-4 py-2 text-center dark:bg-white dark:text-pink-800 dark:focus:ring-pink-100"
               >
                 Get started
               </button>
@@ -125,7 +125,7 @@ const Navbar = () => {
             <button
               data-collapse-toggle="navbar-cta"
               type="button"
-              className="inline-flex items-center p-2 w-8 h-6 md:w-10 md:h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+              className="inline-flex items-center p-2 w-8 h-6 md:w-10 md:h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden  focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400"
               aria-controls="navbar-cta"
               aria-expanded="false"
             >
