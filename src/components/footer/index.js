@@ -42,9 +42,9 @@ const Footer = () => {
           </div>
           <hr className="my-6 border-pink-700 sm:mx-auto dark:border-white lg:my-8" />
           <span className="block text-gray-800 text-lg sm:text-center dark:text-gray-200">
-            © 2023{" "}
+            © 2025{" "}
             <a href="https://flowbite.com/" className="hover:underline">
-              Habit Tracker™
+              Tracko™
             </a>
             . All Rights Reserved.
           </span>

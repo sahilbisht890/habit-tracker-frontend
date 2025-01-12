@@ -4,6 +4,7 @@ import Home from "./components/home";
 import { AppProvider } from "./createContext";
 import Dashboard from "./components/Dashboard";
 import AuthGuard from "./utils/authGuard";
+import About from "./components/about";
 
 const App = () => {
 
@@ -18,6 +19,7 @@ const App = () => {
                <Dashboard/>
              </AuthGuard>
             } />
+            <Route path='/about' element = {<About/>}/>
         </Routes>
       </Layout>
     </Router>

@@ -7,9 +7,6 @@ const Navbar = () => {
   const { state, setState, setSignupView } = useContext(AppContext);
   const [showProfile, setShowProfile] = useState(false);
 
-
-
-
   const toggleTheme = () => {
     setState((prevState) => ({
       ...prevState,
