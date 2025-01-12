@@ -117,7 +117,7 @@ const Dashboard = () => {
       if (response.data?.success) {
         console.log("Habit Added Successfully in tracker List");
         if (selectedDate === today) {
-          await fetchHabitTrackerList();
+          await fetchHabitTrackerList(today);
         }
       }
     } catch (error) {
