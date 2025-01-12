@@ -81,7 +81,7 @@ const Navbar = () => {
                 >
                   <span className="sr-only">Open user menu</span>
                   <img
-                    className="w-5 h-5 md:w-8 md:h-8 rounded-full"
+                    className="w-6 h-6 md:w-8 md:h-8 rounded-full"
                     src="/images/icons8.png"
                     alt="user photo"
                   />
@@ -131,7 +131,7 @@ const Navbar = () => {
             >
               <span className="sr-only">Open main menu</span>
               <svg
-                className="w-3 h-3 md:w-5 md:h-5"
+                className="w-4 h-4 md:w-5 md:h-5"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

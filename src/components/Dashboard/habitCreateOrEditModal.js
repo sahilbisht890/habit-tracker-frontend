@@ -67,7 +67,7 @@ const HabitModal = ({
         dailyGoal : values.dailyGoal,
         unit : values.unit
       }
-      const response = await axiosInstance.post("updateHabit", values);
+      const response = await axiosInstance.post("updateHabit", data);
       if (response.data?.success) {
         setIsVisible(false);
         await fetchHabitList();
@@ -123,7 +123,7 @@ const HabitModal = ({
 
   return (
     <Modal
-      title={type === "edit" ? "Edit Habit" : "Create Habit"}
+      title={type === "edit" || type === 'update' ? "Edit Habit" : "Create Habit"}
       visible={visible}
       onCancel={onClose}
       footer={null}
