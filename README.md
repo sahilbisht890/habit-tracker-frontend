@@ -1,71 +1,80 @@
-# Getting Started with Create React App
+## Running the Project Locally
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Prerequisites
 
-## Available Scripts
+1. **Node.js and npm**: Ensure you have Node.js and npm installed on your machine.
+   - [Download Node.js](https://nodejs.org/)
+2. **Git**: Ensure Git is installed for cloning the repository.
+   - [Download Git](https://git-scm.com/)
 
-In the project directory, you can run:
+---
 
-### `npm start`
+### Steps to Run Locally
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. **Clone the Repository**:
+   ```bash
+   git clone <repository-url>
+   cd <project-folder>
+   ```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+2. **Install Dependencies**:
+   Run the following command to install the required dependencies:
+   ```bash
+   npm install
+   ```
 
-### `npm test`
+3. **Setup Environment Variables**:
+   - Create a `.env` file in the root of the project.
+   - Add the following environment variable to your `.env` file:
+     ```env
+     REACT_APP_API_BASE_URL=http://localhost:5000/api
+     ```
+   - Replace `http://localhost:5000/api` with your actual backend API base URL if different.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4. **Start the Development Server**:
+   Run the following command to start the React application:
+   ```bash
+   npm start
+   ```
 
-### `npm run build`
+   By default, the app will run at `http://localhost:3000`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+5. **Backend (if applicable)**:
+   - If the project requires a backend server, ensure it is running locally before starting the frontend.
+   - For example:
+     ```bash
+     cd backend
+     npm install
+     npm run dev
+     ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Common Issues and Solutions
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. **Missing `.env` File**:
+   - Ensure the `.env` file is created in the root folder with the correct API URL.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+2. **Port Conflicts**:
+   - If port `3000` is already in use, specify another port using the `PORT` variable in `.env`:
+     ```env
+     PORT=3001
+     ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+3. **Backend Not Running**:
+   - If your API requests fail, ensure the backend server is up and running at the specified `REACT_APP_API_BASE_URL`.
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Scripts
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-"# habit-tracker-frontend" 
+- **Start Development Server**:
+  ```bash
+  npm start
+  ```
+- **Build for Production**:
+  ```bash
+  npm run build
+  ``
