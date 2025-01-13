@@ -33,7 +33,7 @@ const HabitCompletionChart = ({ completedCount, totalCount }) => {
   };
 
   return (
-    <div className="w-full sm:w-[70%] md:w-[45%] lg:w-[50%] xl:w-[32%] p-4">
+    <div className="sm:w-[55%] md:w-[45%] lg:w-[50%] xl:w-[32%] p-4">
     <Pie data={data} options={options} />
     </div>
   );

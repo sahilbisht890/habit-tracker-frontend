@@ -148,7 +148,7 @@ const Navbar = () => {
           </div>
           <div
             className="items-center justify-between w-full md:flex md:w-auto md:order-1"
-            style={{display : showMenuBar ? "visible" : "hidden"}}
+            style={{ display: showMenuBar ? "block" : "none" }}
           >
             <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-pink-200 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-pink-200 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
               <li>

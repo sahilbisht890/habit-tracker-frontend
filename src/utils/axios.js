@@ -34,6 +34,7 @@ axiosInstance.interceptors.response.use(
 
       if (status === 401) {
         console.error('Unauthorized! Redirecting to login...');
+        toast.error(data.message);
       } else if (data?.message) {
         toast.error(data.message); 
       } else {
