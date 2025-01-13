@@ -6,6 +6,7 @@ import axiosInstance from "../../utils/axios";
 const Navbar = () => {
   const { state, setState, setSignupView } = useContext(AppContext);
   const [showProfile, setShowProfile] = useState(false);
+  const [showMenuBar , setShowMenuBar] = useState(false);
 
   const dropdownRef = useRef(null); 
 
@@ -123,11 +124,9 @@ const Navbar = () => {
               </button>
             )}
             <button
-              data-collapse-toggle="navbar-cta"
               type="button"
               className="inline-flex items-center p-2 w-8 h-6 md:w-10 md:h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden  dark:text-gray-400"
-              aria-controls="navbar-cta"
-              aria-expanded="false"
+              onClick={() => setShowMenuBar(!showMenuBar)}
             >
               <span className="sr-only">Open main menu</span>
               <svg
@@ -148,8 +147,8 @@ const Navbar = () => {
             </button>
           </div>
           <div
-            className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
-            id="navbar-cta"
+            className="items-center justify-between w-full md:flex md:w-auto md:order-1"
+            style={{display : showMenuBar ? "visible" : "hidden"}}
           >
             <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-pink-200 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-pink-200 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
               <li>

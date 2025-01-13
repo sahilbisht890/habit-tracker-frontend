@@ -5,7 +5,7 @@ const Home = () => {
   const { setSignupView, state } = useContext(AppContext);
 
   return (
-  <div className="w-full flex flex-col-reverse md:flex-row justify-between py-6 md:py-10 px-2 sm:px-4 dark:bg-gray-800 dark:text-gray-200">
+  <div className="w-full flex flex-col-reverse md:flex-row justify-between py-2 md:py-10 px-2 sm:px-4 dark:bg-gray-800 dark:text-gray-200">
      <div className="md:w-1/2 sm:w-full md:text-left  md:mb-0 mt-4 md:mt-5 flex flex-col items-center justify-between mb-3 md:items-start">
         <div>
           <div className="text-4xl md:text-6xl lg:text-8xl font-medium text-pink-700 dark:text-pink-500 pacifico-regular">
@@ -20,7 +20,7 @@ const Home = () => {
         <div>
           {!state?.isAuthenticated && (
             <button
-              className="text-white px-3 py-2 bg-pink-700 dark:bg-pink-600 rounded hover:scale-110"
+              className="text-white px-3 py-2 bg-pink-700 dark:bg-pink-600 mt-2 md:mt-0 rounded hover:scale-110"
               onClick={() => setSignupView(true)}
             >
               Get Started
