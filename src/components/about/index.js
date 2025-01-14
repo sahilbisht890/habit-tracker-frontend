@@ -8,14 +8,14 @@ const About = () => {
         <h2 className="text-5xl  mb-4 text-pink-700 dark:text-pink-400 pacifico-regular">
           Welcome to Habit Tracker!
         </h2>
-        <p className="mb-4 leading-relaxed text-xl">
+        <p className="mb-4 leading-relaxed text-xl md:text-2xl">
           Habit Tracker is a simple yet powerful tool designed to help you
           cultivate positive habits and track your progress effectively. Whether
           you’re forming new habits or breaking old ones, this app is here to
           support you every step of the way.
         </p>
 
-        <ul className="list-disc ml-8 space-y-3">
+        <ul className="list-disc ml-8 space-y-3 text-lg">
           <li>
             <span className="font-semibold">Add Habits:</span> Create habits
             that matter to you, tailored to your personal goals and
@@ -37,7 +37,7 @@ const About = () => {
           </li>
         </ul>
 
-        <p className="mt-6">
+        <p className="mt-6 text-xl md:text-2xl">
           Start building habits that last and take control of your productivity
           with Habit Tracker!
         </p>
