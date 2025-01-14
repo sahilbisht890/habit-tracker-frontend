@@ -90,8 +90,7 @@ const HabitModal = ({
       const response = await axiosInstance.patch("updateHabitProgress", data);
       if (response.data?.success) {
        setIsVisible(false);
-      const today = dayjs().format("DD-MM-YYYY");
-      await fetchHabitTrackerList(today);
+      await fetchHabitTrackerList(selectedDate);
       }
     } catch (error) {
       console.log("Error", error);
