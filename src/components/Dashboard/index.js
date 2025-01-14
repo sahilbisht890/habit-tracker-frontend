@@ -94,7 +94,6 @@ const Dashboard = () => {
   const fetchHabitTrackerList = async (date) => {
     setLoading(true);
     try {
-      console.log("datecoming", date);
       const data = { date: date };
       const response = await axiosInstance.post("habitTrackerList", data);
       if (response.data?.success) {
@@ -112,13 +111,11 @@ const Dashboard = () => {
     setLoading(true);
     const formattedDate = dayjs(new Date()).format("DD-MM-YYYY");
     try {
-      const data = { habitId: habit.id, date: formattedDate };
+      const data = { habitId: habit.id, date: selectedDate };
       const response = await axiosInstance.post("addNewHabitToTrack", data);
       if (response.data?.success) {
         console.log("Habit Added Successfully in tracker List");
-        if (selectedDate === today) {
-          await fetchHabitTrackerList(today);
-        }
+          await fetchHabitTrackerList(selectedDate);
       }
     } catch (error) {
       console.log("Error while adding habit in Today's List", error);
@@ -154,7 +151,7 @@ const Dashboard = () => {
         },
       });
       if (response.data.success) {
-        await fetchHabitTrackerList();
+        await fetchHabitTrackerList(selectedDate);
       }
     } catch (error) {
       console.log(error);
