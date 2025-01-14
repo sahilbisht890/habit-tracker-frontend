@@ -177,12 +177,12 @@ const Dashboard = () => {
         fetchHabitTrackerList={fetchHabitTrackerList}
       />
       {loading ? (
-        <div className="flex justify-center items-center w-full h-full">
+        <div className="flex justify-center items-center w-full h-screen">
           <Spin size="large" />
         </div>
       ) : (
         <>
-          <div className="md:w-1/3 w-full p-4 h-[25rem] md:h-full  bg-pink-300 dark:bg-gray-800 rounded-lg shadow-lg overflow-y-auto">
+          <div className="md:w-1/3 w-full p-4 h-[25rem]  md:h-full  bg-pink-300 dark:bg-gray-800 rounded-lg shadow-lg overflow-y-auto">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-base md:text-lg font-bold">Your Habits</h2>
               <button
