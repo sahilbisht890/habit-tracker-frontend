@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useRef} from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { IconMoonFilled, IconBulbFilled } from "@tabler/icons-react";
 import { AppContext } from "../../createContext";
@@ -6,9 +6,9 @@ import axiosInstance from "../../utils/axios";
 const Navbar = () => {
   const { state, setState, setSignupView } = useContext(AppContext);
   const [showProfile, setShowProfile] = useState(false);
-  const [showMenuBar , setShowMenuBar] = useState(false);
+  const [showMenuBar, setShowMenuBar] = useState(false);
 
-  const dropdownRef = useRef(null); 
+  const dropdownRef = useRef(null);
 
   const toggleTheme = () => {
     setState((prevState) => ({
@@ -20,7 +20,7 @@ const Navbar = () => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setShowProfile(false); 
+        setShowProfile(false);
       }
     };
 
@@ -30,21 +30,20 @@ const Navbar = () => {
     };
   }, []);
 
-
-  const handleLogout =async  () => {
+  const handleLogout = async () => {
     try {
-      const response = await axiosInstance.get('logout');
-      if(response.data?.success) {
+      const response = await axiosInstance.get("logout");
+      if (response.data?.success) {
         setState((prevState) => ({
           ...prevState,
-          isAuthenticated : false,
-          user : null
-        }))
+          isAuthenticated: false,
+          user: null,
+        }));
       }
-    }catch(error){
-        console.log('Error while signing out',error);
+    } catch (error) {
+      console.log("Error while signing out", error);
     }
-  }
+  };
 
   const handleDropdownToggle = () => {
     setShowProfile(!showProfile);
@@ -98,7 +97,7 @@ const Navbar = () => {
                         {state?.user?.username}
                       </span>
                       <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">
-                         {state?.user?.email}
+                        {state?.user?.email}
                       </span>
                     </div>
                     <ul className="py-2" aria-labelledby="user-menu-button">
@@ -147,8 +146,9 @@ const Navbar = () => {
             </button>
           </div>
           <div
-            className="items-center justify-between w-full md:flex md:w-auto md:order-1"
-            style={{ display: showMenuBar ? "block" : "none" }}
+            className={`items-center justify-between w-full md:flex md:w-auto md:order-1 ${
+              showMenuBar ? "block" : "hidden"
+            } md:block`}
           >
             <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-pink-200 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-pink-200 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
               <li>
