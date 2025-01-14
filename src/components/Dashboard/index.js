@@ -253,8 +253,8 @@ const Dashboard = () => {
                   placeholder="Choose date"
                   allowClear={false}
                   value={dayjs(selectedDate, "DD-MM-YYYY")}
-                  disabledDate={(current) => current.isAfter(dayjs(), "day")}
-                />
+                  disabledDate={(current) => current.isAfter(dayjs().add(5, "day"), "day")}
+                  />
               </div>
             </div>
 
