@@ -167,7 +167,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row h-screen p-4 bg-pink-50 dark:bg-gray-900 dark:text-gray-200">
+    <div className="flex flex-col md:flex-row sm:h-full md:h-screen p-4 bg-pink-50 dark:bg-gray-900 dark:text-gray-200">
       <HabitModal
         type={actionType}
         habitDetails={habitDetails}
@@ -182,7 +182,7 @@ const Dashboard = () => {
         </div>
       ) : (
         <>
-          <div className="md:w-1/3 w-full p-4 h-[90rem] md:h-full  bg-pink-300 dark:bg-gray-800 rounded-lg shadow-lg overflow-y-auto">
+          <div className="md:w-1/3 w-full p-4 h-[25rem] md:h-full  bg-pink-300 dark:bg-gray-800 rounded-lg shadow-lg overflow-y-auto">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-base md:text-lg font-bold">Your Habits</h2>
               <button
@@ -239,7 +239,7 @@ const Dashboard = () => {
             </ul>
           </div>
 
-          <div className="md:w-2/3 w-full mt-6 md:mt-0 h-[90rem] md:h-full md:ml-6 p-4 bg-pink-300 dark:bg-gray-800 rounded-lg shadow-lg overflow-y-auto">
+          <div className="md:w-2/3 w-full mt-6 md:mt-0 h-full md:h-full md:ml-6 p-4 bg-pink-300 dark:bg-gray-800 rounded-lg shadow-lg sm:overflow-visible md:overflow-y-auto">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <h2 className="text-base md:text-lg font-semibold mb-4 text-center md:mb-0 md:mr-4">
                 {selectedDate === today
