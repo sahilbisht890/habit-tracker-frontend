@@ -167,7 +167,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row sm:h-full md:h-screen p-4 bg-pink-50 dark:bg-gray-900 dark:text-gray-200">
+    <div className="flex flex-col md:flex-row sm:h-full md:h-screen p-0 md:p-4 bg-pink-50 dark:bg-gray-900 dark:text-gray-200">
       <HabitModal
         type={actionType}
         habitDetails={habitDetails}
