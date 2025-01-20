@@ -1,3 +1,13 @@
+![Screenshot (22)](https://github.com/user-attachments/assets/85df9113-a5df-464f-9697-e7b5d86ab3df)
+![Screenshot (23)](https://github.com/user-attachments/assets/b722d5a8-cb5e-4cc1-805e-60eec5b634cc)
+![Screenshot (24)](https://github.com/user-attachments/assets/3766fc0c-ca3b-459d-97ac-c0820a1e961e)
+![Screenshot (21)](https://github.com/user-attachments/assets/12e1e308-de24-4546-a31d-a7ed9b158620)
+
+
+
+
+
+
 ## Running the Project Locally
 
 ### Prerequisites
