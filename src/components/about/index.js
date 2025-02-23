@@ -40,6 +40,7 @@ const About = () => {
         <p className="mt-6 text-xl md:text-2xl">
           Start building habits that last and take control of your productivity
           with Habit Tracker!
+          All the best
         </p>
       </section>
     </div>
